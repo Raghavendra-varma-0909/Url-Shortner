@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>URL Shortener</h1>
+      <p>Create short links, download QR codes, and view history.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Create Short Link</h2>
+        <form id="shortenForm">
+          <label>Long URL
+            <input type="url" id="url" required placeholder="https://example.com/long/path" />
+          </label>
+
+          <label>Custom alias (optional)
+            <input type="text" id="alias" placeholder="letters, numbers, - or _" />
+          </label>
+
+          <label>Expire after (days, optional)
+            <input type="number" id="expire" min="0" placeholder="0 = never" />
+          </label>
+
+          <button type="submit">Shorten</button>
+        </form>
+
+        <div id="result" class="hidden">
+          <h3>Result</h3>
+          <div id="shortWrap">
+            <a id="shortLink" href="#" target="_blank"></a>
+            <button id="copyBtn">Copy</button>
+          </div>
+          <div id="qrWrap">
+            <img id="qrImg" alt="QR code" />
+            <a id="downloadQr" download="qr.png">Download QR</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Recent Links</h2>
+        <div class="controls">
+          <input id="search" placeholder="search url or code" />
+          <button id="refresh">Refresh</button>
+        </div>
+        <table id="list">
+          <thead>
+            <tr><th>Code</th><th>Short</th><th>Original</th><th>Created</th><th>Expires</th><th>QR</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </section>
+    </main>
+
+    <footer>
+      <small>Self-hosted URL shortener • Express + SQLite</small>
+    </footer>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>
